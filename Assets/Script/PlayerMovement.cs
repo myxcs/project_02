@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask jumpableGround;
     private BoxCollider2D coll;
 
+    private enum MovementState { idle, running, jumping, falling };
 
     // Start is called before the first frame update
     void Start()
@@ -45,20 +46,32 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateAnimation()
     {
+        MovementState state = MovementState.idle;
         if (dirX > 0)
         {
             sprite.flipX = false;
-            anim.SetBool("running",true);
+            state = MovementState.running;
         }
         else if (dirX < 0)
         {
-            anim.SetBool("running",true);
             sprite.flipX = true;
+            state = MovementState.running;
         }
         else
         {
-            anim.SetBool("running",false);
+            state = MovementState.idle;
         }
+
+        if(rb.velocity.y > .1f)
+        {
+            state = MovementState.jumping;
         }
+        else if(rb.velocity.y < -.1f)
+         {
+            state = MovementState.falling;
+         }
+         anim.SetInteger("state", (int)state);
+
+    }
 
 }
