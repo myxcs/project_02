@@ -30,11 +30,11 @@ public class PlayerLife : MonoBehaviour
         if(collision.gameObject.tag == "Traps")
         {
             Debug.Log("-10");
-            TakeDamege(20);
+            TakeDamage(20);
         }
     }
 
-    private void TakeDamege(int damage)
+    private void TakeDamage(int damage)
     {
        currentHealth -=damage;
        
@@ -50,8 +50,8 @@ public class PlayerLife : MonoBehaviour
 
        // deathSoundEffect.Play();
         anim.SetTrigger("death");
+        Debug.Log("Game Over");
         rb.bodyType = RigidbodyType2D.Static;
-        RestartLevel();
     }
 
     private void RestartLevel()
