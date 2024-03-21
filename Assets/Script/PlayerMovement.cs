@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private float moveSpeed = 5f;
-    private float jumpForce = 5f;
+    private float jumpForce = 6f;
     private float dirX;
     private SpriteRenderer sprite;
     [SerializeField] private LayerMask jumpableGround;
@@ -28,7 +28,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         dirX = Input.GetAxisRaw("Horizontal");
+        //dirX = Input.GetAxisRaw("Horizontal");
+        dirX = 1f;
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
