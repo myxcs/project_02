@@ -8,10 +8,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private float moveSpeed = 5f;
-    private float jumpForce = 6f;
+    private float jumpForce = 6.5f;
     private float dirX;
     private SpriteRenderer sprite;
     [SerializeField] private LayerMask jumpableGround;
+    [SerializeField] private AudioSource jumpSoundEffect;
     private BoxCollider2D coll;
 
     private enum MovementState { idle, running, jumping, falling };
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
+            jumpSoundEffect.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
 

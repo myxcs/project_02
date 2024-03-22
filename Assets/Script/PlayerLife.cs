@@ -9,13 +9,14 @@ public class PlayerLife : MonoBehaviour
 {
     private Animator anim;
     private Rigidbody2D rb;
+    public Transform player;
 
     public int maxHealth = 100;
     public int currentHealth;
 
     public HealthBar healthBar;
 
-    //[SerializeField] private AudioSource deathSoundEffect;
+    [SerializeField] private AudioSource deathSoundEffect;
    
     private void Start()
     {
@@ -48,7 +49,7 @@ public class PlayerLife : MonoBehaviour
      private void Die()
     {
 
-       // deathSoundEffect.Play();
+        deathSoundEffect.Play();
         anim.SetTrigger("death");
         Debug.Log("Game Over");
         rb.bodyType = RigidbodyType2D.Static;
@@ -57,5 +58,19 @@ public class PlayerLife : MonoBehaviour
     private void RestartLevel()
     {
            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+   private void Update()
+    {
+        if(player.position.y < -5f)
+        {
+            rb.bodyType = RigidbodyType2D.Static;
+            deathSoundEffect.Play();
+            anim.SetTrigger("death");
+            Debug.Log("Game Over");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }

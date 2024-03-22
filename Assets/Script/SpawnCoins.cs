@@ -6,30 +6,43 @@ public class Spawn : MonoBehaviour
 {
     public Transform player;
     public GameObject coin;
-    public float spawnTime = 1f;
-    public float spawnDelay = 1f;
-   bool enableSpawn = true;
-    // Start is called before the first frame update
-    private void Update() {
-        if(enableSpawn == true)
-        {
-            enableSpawn = false;
-            float positionX = player.position.x + Random.Range(-10, 10);
-            float positionY = player.position.y + Random.Range(-10, 10);
 
-            Instantiate(coin, new Vector2(positionX, positionY), Quaternion.identity);
-            Invoke("EnableSpawn", spawnDelay);
-            
-        }
-    }
-    void EnableSpawn()
+    bool enableSpawn;
+
+    private void Start()
     {
         enableSpawn = true;
     }
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.gameObject.tag == "Player")
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Nếu mà enableSpawn = true -> thì cho phép sinh coin
+        if (enableSpawn)
         {
-            enableSpawn = false;    
+            enableSpawn = false;
+
+            float viTriX = player.position.x + Random.Range(15f, 30f);
+            float viTriY = Mathf.Sin(viTriX) + 0.5f;
+
+            int soLuong = Random.Range(25, 59);
+
+            for (int i = 0; i < soLuong; i++)
+            {
+                //Sinh ra coin, ở vị trí nào, hướng xoay (không đổi), làm con của đối tượng nào
+                Instantiate(coin, new Vector3(viTriX, viTriY, 0), Quaternion.identity, transform);
+                viTriX ++;
+                viTriY = Mathf.Sin(viTriX) + 0.5f;
+            }
+
+            StartCoroutine(DelayForSpawn());
         }
+    }
+
+    IEnumerator DelayForSpawn()
+    {
+        float timer = Random.Range(10f, 15f);
+        yield return new WaitForSeconds(timer);
+        enableSpawn = true;
     }
 }

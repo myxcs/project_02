@@ -7,9 +7,6 @@ public class RandomGround : MonoBehaviour
 {
     public Transform player;
     public List<GameObject> ground;
-    public List<GameObject> oldGround;
-
-    public GameObject firstGround;
     private Vector2 nextPos;
     private Vector2 endPos;
     private float rd;
@@ -22,7 +19,6 @@ public class RandomGround : MonoBehaviour
         endPos = new Vector2(5f, 0f); //Vị trí cuối cùng của map hiện tại là 5 do ô đất dài 5 ô
         //delete firstGround after 5s
         
-        StartCoroutine(DestroyAfterDelay(5f));
 
        
         // rd = Random.Range(2f, 5f); //Random khoảng cách giữa miếng đất đầu và miếng tiếp theo 
@@ -44,12 +40,6 @@ public class RandomGround : MonoBehaviour
       
     }
 
-    private IEnumerator DestroyAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        Destroy(firstGround);
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -62,7 +52,7 @@ public class RandomGround : MonoBehaviour
             nextPos = new Vector2(endPos.x + rd, 0f);
             id = Random.Range(0, ground.Count);
             GameObject newGround = Instantiate(ground[id], nextPos, Quaternion.identity, transform);
-            oldGround.Add(newGround);
+        
             
             switch (id)
             {
@@ -77,13 +67,6 @@ public class RandomGround : MonoBehaviour
         }
         //Nhân vật chạy qua nhưng các miến đất cũ không mất đi
         //Lấy miếng đầu tiên trong danh sách
-
-        GameObject getOneGround = oldGround.FirstOrDefault();
-        if (getOneGround != null && Vector2.Distance(player.position, getOneGround.transform.position) > 50f)
-        {
-            oldGround.Remove(getOneGround);
-            Destroy(getOneGround);
-        }
 
     }
 }
