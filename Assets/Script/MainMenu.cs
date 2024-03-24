@@ -10,6 +10,11 @@ public class MainMenu : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Scenes02");
     }
+
+    public void PlayGround()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Scenes03");
+    }
     public void ExitGame()
     {
         Application.Quit();

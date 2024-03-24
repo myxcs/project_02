@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,6 +18,7 @@ public class PlayerLife : MonoBehaviour
     public HealthBar healthBar;
 
     [SerializeField] private AudioSource deathSoundEffect;
+    [SerializeField] private AudioSource hitSoundEffect;
    
     private void Start()
     {
@@ -32,8 +34,19 @@ public class PlayerLife : MonoBehaviour
         {
             Debug.Log("-10");
             TakeDamage(20);
+            hitSoundEffect.Play();
+        }
+        if(collision.gameObject.tag == "Bullet")
+        {
+            Debug.Log("-10");
+            TakeDamage(10);
+            hitSoundEffect.Play();
+            Destroy(collision.gameObject);
         }
     }
+    
+
+
 
     private void TakeDamage(int damage)
     {
@@ -45,6 +58,10 @@ public class PlayerLife : MonoBehaviour
             Die();
         }
     }
+    private void RestartLevel()
+    {
+           SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
      private void Die()
     {
@@ -53,12 +70,10 @@ public class PlayerLife : MonoBehaviour
         anim.SetTrigger("death");
         Debug.Log("Game Over");
         rb.bodyType = RigidbodyType2D.Static;
+       // RestartLevel();
     }
 
-    private void RestartLevel()
-    {
-           SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
@@ -66,11 +81,7 @@ public class PlayerLife : MonoBehaviour
     {
         if(player.position.y < -5f)
         {
-            rb.bodyType = RigidbodyType2D.Static;
-            deathSoundEffect.Play();
-            anim.SetTrigger("death");
-            Debug.Log("Game Over");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            RestartLevel();
         }
     }
 }
