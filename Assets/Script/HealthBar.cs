@@ -8,6 +8,8 @@ public class HealthBar : MonoBehaviour
     public Slider slider;
     public Gradient gradient;
     public Image fill;
+
+    [SerializeField] private Transform player;
     public void SetMaxHealth(int health)
     {
         slider.maxValue = health;
@@ -20,5 +22,10 @@ public class HealthBar : MonoBehaviour
     {
         slider.value = health;
         fill.color = gradient.Evaluate(slider.normalizedValue);
+    }
+
+    public void Update()
+    {
+        transform.position = new Vector3(player.position.x, player.position.y + 1.5f, transform.position.z);
     }
 }
