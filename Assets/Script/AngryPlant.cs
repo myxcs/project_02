@@ -16,10 +16,6 @@ public class AngryPlant : MonoBehaviour
 
     Animator animator;
 
-    public float timer;
-    public float cooldown;
-
-    private enum State {idle, shoot};
 
     private void Start()
     {

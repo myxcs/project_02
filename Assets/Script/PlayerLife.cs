@@ -43,6 +43,12 @@ public class PlayerLife : MonoBehaviour
             hitSoundEffect.Play();
             Destroy(collision.gameObject);
         }
+        if(collision.gameObject.tag == "Deadzone")
+        {
+            Debug.Log("Die");
+            //Die();
+
+        }
     }
     
 
@@ -63,7 +69,7 @@ public class PlayerLife : MonoBehaviour
            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-     private void Die()
+     public void Die()
     {
 
         deathSoundEffect.Play();
@@ -77,11 +83,11 @@ public class PlayerLife : MonoBehaviour
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
-   private void Update()
-    {
-        if(player.position.y < -5f)
-        {
-            RestartLevel();
-        }
-    }
+//    private void Update()
+//     {
+//         if(player.position.y < -5f)
+//         {
+//             RestartLevel();
+//         }
+//     }
 }
