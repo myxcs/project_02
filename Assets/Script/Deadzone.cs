@@ -18,7 +18,9 @@ public class Deadzone : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayerLife>().Die();
+            other.gameObject.GetComponent<PlayerLife>().TakeDamage(100);
+            Debug.Log("Deadzone");
+            
         }
     }
 }

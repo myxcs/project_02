@@ -54,7 +54,7 @@ public class PlayerLife : MonoBehaviour
 
 
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
        currentHealth -=damage;
        
