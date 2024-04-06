@@ -8,6 +8,8 @@ TagManager:
   - Coins
   - Bullet
   - Deadzone
+  - Enemy
+  - WeakPoint
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - UI
   - Ground
   - Things
-  - 
+  - Enemy
   - 
   - 
   - 

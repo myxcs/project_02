@@ -25,12 +25,12 @@ public class Spawn : MonoBehaviour
             float viTriX = player.position.x + Random.Range(15f, 30f);
             float viTriY = Mathf.Sin(viTriX) + 0.5f;
 
-            int soLuong = Random.Range(25, 59);
+            int soLuong = Random.Range(10, 20);
 
             for (int i = 0; i < soLuong; i++)
             {
                 //Sinh ra coin, ở vị trí nào, hướng xoay (không đổi), làm con của đối tượng nào
-                Instantiate(coin, new Vector3(viTriX, viTriY, 0), Quaternion.identity, transform);
+                Instantiate(coin, new Vector3(viTriX, viTriY + 1.5f, 0), Quaternion.identity, transform);
                 viTriX ++;
                 viTriY = Mathf.Sin(viTriX) + 0.5f;
             }

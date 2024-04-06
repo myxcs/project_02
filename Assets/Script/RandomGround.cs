@@ -49,7 +49,7 @@ public class RandomGround : MonoBehaviour
         if (Vector2.Distance(player.position, endPos) < 50f)
         {
             rd = Random.Range(2f, 5f);
-            nextPos = new Vector2(endPos.x + rd, 0f);
+            nextPos = new Vector2(endPos.x + rd, Random.Range(-1.5f, 1.5f));
             id = Random.Range(0, ground.Count);
             GameObject newGround = Instantiate(ground[id], nextPos, Quaternion.identity, transform);
         

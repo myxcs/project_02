@@ -11,7 +11,7 @@ public class Deadzone : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        transform.position = new Vector3(player.position.x, -7 , transform.position.z);
+        transform.position = new Vector3(player.position.x, -5 , transform.position.z);
     }
 
     void OnTriggerEnter2D(Collider2D other)

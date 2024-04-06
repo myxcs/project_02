@@ -21,4 +21,11 @@ public class BulletPlant : MonoBehaviour
     {
         rb.velocity = new Vector2(-5f, rb.velocity.y);
     }    
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
+    }
 }

@@ -36,18 +36,27 @@ public class PlayerLife : MonoBehaviour
             TakeDamage(20);
             hitSoundEffect.Play();
         }
-        if(collision.gameObject.tag == "Bullet")
+        if(collision.gameObject.tag == "Enemy")
         {
-            Debug.Log("-10");
-            TakeDamage(10);
+            Debug.Log(-20);
+            TakeDamage(20);
             hitSoundEffect.Play();
-            Destroy(collision.gameObject);
         }
         if(collision.gameObject.tag == "Deadzone")
         {
             Debug.Log("Die");
             //Die();
 
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D trigger)
+    {
+        if(trigger.gameObject.tag == "Bullet")
+        {
+            Debug.Log(-20);
+            TakeDamage(20);
+            hitSoundEffect.Play();
+            Destroy(trigger.gameObject);
         }
     }
     
@@ -79,15 +88,4 @@ public class PlayerLife : MonoBehaviour
        // RestartLevel();
     }
 
-    
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-//    private void Update()
-//     {
-//         if(player.position.y < -5f)
-//         {
-//             RestartLevel();
-//         }
-//     }
 }

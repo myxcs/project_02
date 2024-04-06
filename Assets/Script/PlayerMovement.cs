@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private float moveSpeed = 5f;
-    private float jumpForce = 6.5f;
+    private float jumpForce = 7f;
     private float dirX;
     private SpriteRenderer sprite;
     [SerializeField] private LayerMask jumpableGround;
