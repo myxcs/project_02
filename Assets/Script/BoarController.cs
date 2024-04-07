@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,9 +12,11 @@ public class BoarController : MonoBehaviour
    public SpriteRenderer sprite;
    private bool isFaceRight = true;
    private Animator animator;
+   private Rigidbody2D rb;
 
    private float timer = 0f;
    public float coolDown = 2f;
+   public BoarLife boarLife;
 
     // Start is called before the first frame update
     private void Start()
@@ -22,6 +24,7 @@ public class BoarController : MonoBehaviour
         patrolDestination = 0;
         sprite = GetComponent<SpriteRenderer>();
         sprite.flipX = false;
+        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         animator.SetBool("run", true);
     }
@@ -29,7 +32,21 @@ public class BoarController : MonoBehaviour
     // Update is called once per frame
    private void Update()
     {
-        if(patrolDestination == 0)
+        if(boarLife.boarIsAlive)
+        {
+            BoarPatrol();
+        }
+        else
+        {
+            rb.bodyType = RigidbodyType2D.Static;
+        }
+       
+
+}
+
+    private void BoarPatrol()
+    {
+      if(patrolDestination == 0)
         {
 
            
@@ -73,12 +90,7 @@ public class BoarController : MonoBehaviour
                     patrolDestination = 0;
                 }
         }
+     }
     }
-
-}
-   public void KillTheBoar()
-       {
-            animator.SetTrigger ("death");
-       }
 }
 

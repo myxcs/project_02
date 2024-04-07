@@ -9,7 +9,9 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private float moveSpeed = 5f;
     private float jumpForce = 7f;
-    private float dirX;
+    public float dirX;
+
+    public bool playerFaceRight;
     private SpriteRenderer sprite;
     [SerializeField] private LayerMask jumpableGround;
     [SerializeField] private AudioSource jumpSoundEffect;
@@ -59,11 +61,13 @@ public class PlayerMovement : MonoBehaviour
         {
             sprite.flipX = false;
             state = MovementState.running;
+            playerFaceRight = true;
         }
         else if (dirX < 0)
         {
             sprite.flipX = true;
             state = MovementState.running;
+            playerFaceRight = false;
         }
         else
         {
