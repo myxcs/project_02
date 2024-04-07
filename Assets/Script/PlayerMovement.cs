@@ -11,6 +11,13 @@ public class PlayerMovement : MonoBehaviour
     private float jumpForce = 7f;
     public float dirX;
 
+    public float KBForce;
+    public float KBCounter;
+    public float KBTotalTime;
+    public bool KnockFromRight;
+   // public bool KnockFromLeft;
+    
+
     public bool playerFaceRight;
     private SpriteRenderer sprite;
     [SerializeField] private LayerMask jumpableGround;
@@ -33,7 +40,23 @@ public class PlayerMovement : MonoBehaviour
     {
         dirX = Input.GetAxisRaw("Horizontal");
         //dirX = 1f;
-        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+        if (KBCounter <=0)
+        {
+             rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+        }
+        else
+        {
+            if (KnockFromRight)
+            {
+                rb.velocity = new Vector2(KBForce, 1f);
+            }
+            else
+            {
+                rb.velocity = new Vector2(-KBForce, 1f);
+            }
+            KBCounter -= Time.deltaTime;
+        }
+       
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {

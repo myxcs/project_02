@@ -6,6 +6,7 @@ using UnityEngine.Animations;
 public class BoarLife : MonoBehaviour
 {
     private Animator animator;
+    [SerializeField] private AudioSource boarDeath;
     
    [SerializeField] public DestroyTheBoar destroyTheBoar;
     public bool boarIsAlive = true;
@@ -17,6 +18,7 @@ public class BoarLife : MonoBehaviour
   public void KillTheBoar()
   {
       animator.SetTrigger("death");
+      boarDeath.Play();
       boarIsAlive = false;
       
   }

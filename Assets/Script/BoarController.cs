@@ -17,6 +17,9 @@ public class BoarController : MonoBehaviour
    private float timer = 0f;
    public float coolDown = 2f;
    public BoarLife boarLife;
+   public bool getHit;
+   public float timerRest;
+   public PlayerLife playerLife;
 
     // Start is called before the first frame update
     private void Start()
@@ -27,14 +30,33 @@ public class BoarController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         animator.SetBool("run", true);
+        getHit = false;
     }
 
     // Update is called once per frame
    private void Update()
     {
+        
+        getHit = playerLife.boarHit;
         if(boarLife.boarIsAlive)
         {
-            BoarPatrol();
+            if(getHit)
+            {
+
+                Debug.Log("Get hit");
+                timerRest += Time.deltaTime;
+                rb.bodyType = RigidbodyType2D.Static;
+                if(timerRest >= 1f)
+                {
+                    getHit = false;
+                    timerRest = 0f;
+                }
+            }
+            else
+            {
+                BoarPatrol();
+            }
+            
         }
         else
         {

@@ -11,15 +11,20 @@ public class PlayerLife : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     public Transform player;
+    public BoxCollider2D bc;
 
     
 
     public int maxHealth = 100;
     public int currentHealth;
 
+
     public HealthBar healthBar;
     public GameObject healthBarObject;
     public GameController gameController;
+    public BoarController boarController;
+    public PlayerMovement playerMovement;
+    public bool boarHit;
 
     [SerializeField] private AudioSource deathSoundEffect;
     [SerializeField] private AudioSource hitSoundEffect;
@@ -31,7 +36,14 @@ public class PlayerLife : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         healthBarObject = GameObject.Find("HealthBar");
-       
+        bc = GetComponent<BoxCollider2D>();
+        boarHit = true;
+        
+    }
+
+    public void Update()
+    {
+        boarHit = boarController.getHit;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -39,12 +51,24 @@ public class PlayerLife : MonoBehaviour
         if(collision.gameObject.tag == "Traps")
         {
             Debug.Log("-10");
+            
             TakeDamage(20);
             hitSoundEffect.Play();
         }
         if(collision.gameObject.tag == "Enemy")
         {
             Debug.Log(-20);
+            boarHit = true;
+           boarController.getHit = true;
+             playerMovement.KBCounter = playerMovement.KBTotalTime;
+             if(collision.transform.position.x <= player.position.x)
+             {
+                 playerMovement.KnockFromRight = true;
+             }
+             if(collision.transform.position.x > player.position.x)
+             {
+                 playerMovement.KnockFromRight = false;
+             }
             TakeDamage(20);
             hitSoundEffect.Play();
         }
@@ -75,6 +99,8 @@ public class PlayerLife : MonoBehaviour
        currentHealth -=damage;
        
         healthBar.SetHealth(currentHealth);
+       
+        
         if(currentHealth <= 0)
         {
             gameController.GameOver();
@@ -86,6 +112,7 @@ public class PlayerLife : MonoBehaviour
         deathSoundEffect.Play();
         anim.SetTrigger("death");
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        bc.enabled = false;
         healthBarObject.SetActive(false);
        // RestartLevel();
     }
