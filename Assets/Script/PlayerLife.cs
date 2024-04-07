@@ -12,10 +12,14 @@ public class PlayerLife : MonoBehaviour
     private Rigidbody2D rb;
     public Transform player;
 
+    
+
     public int maxHealth = 100;
     public int currentHealth;
 
     public HealthBar healthBar;
+    public GameObject healthBarObject;
+    public GameController gameController;
 
     [SerializeField] private AudioSource deathSoundEffect;
     [SerializeField] private AudioSource hitSoundEffect;
@@ -26,6 +30,8 @@ public class PlayerLife : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        healthBarObject = GameObject.Find("HealthBar");
+       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -62,6 +68,7 @@ public class PlayerLife : MonoBehaviour
     
 
 
+    
 
     public void TakeDamage(int damage)
     {
@@ -70,21 +77,16 @@ public class PlayerLife : MonoBehaviour
         healthBar.SetHealth(currentHealth);
         if(currentHealth <= 0)
         {
+            gameController.GameOver();
             Die();
         }
     }
-    private void RestartLevel()
-    {
-           SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
      public void Die()
     {
-
         deathSoundEffect.Play();
         anim.SetTrigger("death");
-        Debug.Log("Game Over");
-        rb.bodyType = RigidbodyType2D.Static;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        healthBarObject.SetActive(false);
        // RestartLevel();
     }
 

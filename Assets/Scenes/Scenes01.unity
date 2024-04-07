@@ -317,7 +317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5131bd9f3c741fa4dbcccaff2fc4d9b8, type: 3}
+  m_Sprite: {fileID: 1085110939, guid: 5131bd9f3c741fa4dbcccaff2fc4d9b8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -786,6 +786,8 @@ MonoBehaviour:
   lilMa: {fileID: 2132180012}
   play: {fileID: 1279772299}
   quit: {fileID: 2087492307}
+  gameOverScreen: {fileID: 0}
+  score: 0
 --- !u!1 &1058117891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,7 +1061,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5131bd9f3c741fa4dbcccaff2fc4d9b8, type: 3}
+  m_Sprite: {fileID: 1085110939, guid: 5131bd9f3c741fa4dbcccaff2fc4d9b8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1192,7 +1194,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5131bd9f3c741fa4dbcccaff2fc4d9b8, type: 3}
+  m_Sprite: {fileID: 1085110939, guid: 5131bd9f3c741fa4dbcccaff2fc4d9b8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

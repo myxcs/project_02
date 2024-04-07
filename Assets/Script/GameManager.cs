@@ -8,9 +8,11 @@ public class GameManager : MonoBehaviour
     public Text lilMa;
     public Button play;
     public Button quit;
+    public GameOverScreen gameOverScreen;
+    public int score = 0;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         tilte.text = "Hopeless Runner 0.1";
         lilMa.text = "by myXcs";
@@ -18,4 +20,11 @@ public class GameManager : MonoBehaviour
         quit.GetComponentInChildren<Text>().text = "Quit!";
         
     }
+
+    public void GameOver()
+    {
+        gameOverScreen.Setup(score);
+    }
+
+
 }
