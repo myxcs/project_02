@@ -10,6 +10,10 @@ TagManager:
   - Deadzone
   - Enemy
   - WeakPoint
+  - CleanMachine
+  - Grid
+  - UI
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX

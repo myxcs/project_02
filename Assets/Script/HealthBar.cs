@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour
     public Slider slider;
     public Gradient gradient;
     public Image fill;
-    public SpriteRenderer heathBarSr;
+
 
     [SerializeField] private Transform player;
     public void SetMaxHealth(int health)
@@ -25,15 +25,9 @@ public class HealthBar : MonoBehaviour
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 
-    public void Start()
-    {
-        heathBarSr = GetComponent<SpriteRenderer>();
-    }
     public void Update()
     {
         transform.position = new Vector3(player.position.x, player.position.y + 1.5f, transform.position.z);
     }
-    public void LetLoose(){
-          heathBarSr.enabled = false;
-    }
+   
 }

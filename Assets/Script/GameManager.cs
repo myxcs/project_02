@@ -8,9 +8,7 @@ public class GameManager : MonoBehaviour
     public Text lilMa;
     public Button play;
     public Button quit;
-    public GameOverScreen gameOverScreen;
-    public int score = 0;
-
+  
     // Start is called before the first frame update
     public void Start()
     {
@@ -20,11 +18,5 @@ public class GameManager : MonoBehaviour
         quit.GetComponentInChildren<Text>().text = "Quit!";
         
     }
-
-    public void GameOver()
-    {
-        gameOverScreen.Setup(score);
-    }
-
 
 }

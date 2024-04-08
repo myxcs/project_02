@@ -7,10 +7,16 @@ public class RandomGround : MonoBehaviour
 {
     public Transform player;
     public List<GameObject> ground;
+    public List<GameObject> enemy;
     private Vector2 nextPos;
     private Vector2 endPos;
-    private float rd;
-    private int id;
+    private Vector2 enemyNextPos;
+    private float xRd;
+    private float yRd;
+    private int GrId;
+    private int EmId;
+    private int rd;
+    public bool spawnEnemyYet = false;
     int groundLen;
     // Start is called before the first frame update
     void Start()
@@ -48,13 +54,24 @@ public class RandomGround : MonoBehaviour
 
         if (Vector2.Distance(player.position, endPos) < 50f)
         {
-            rd = Random.Range(2f, 5f);
-            nextPos = new Vector2(endPos.x + rd, Random.Range(-1.5f, 1.5f));
-            id = Random.Range(0, ground.Count);
-            GameObject newGround = Instantiate(ground[id], nextPos, Quaternion.identity, transform);
-        
+            xRd = Random.Range(2f, 5f);
+            yRd = Random.Range(-1.5f, 1f);
+
+
+            nextPos = new Vector2(endPos.x + xRd, yRd);
+            enemyNextPos = new Vector2(endPos.x + xRd + 3f, yRd);
+            GrId = Random.Range(0, ground.Count);
+            EmId = Random.Range(0, enemy.Count);
+            GameObject newGround = Instantiate(ground[GrId], nextPos, Quaternion.identity, transform);
+            rd = Random.Range(1, 3);
+            if(rd == 1)
+             {
+                  GameObject newEnemy = Instantiate(enemy[EmId], enemyNextPos, Quaternion.identity, transform);
+            }
+             
+         
             
-            switch (id)
+            switch (GrId)
             {
                 case 0: groundLen = 7; break;
                 case 1: groundLen = 7; break;
@@ -63,10 +80,15 @@ public class RandomGround : MonoBehaviour
                 case 4: groundLen = 5; break;
                 case 5: groundLen = 5; break;
             }
+           
             endPos = new Vector2(nextPos.x + groundLen, 0f);
         }
         //Nhân vật chạy qua nhưng các miến đất cũ không mất đi
         //Lấy miếng đầu tiên trong danh sách
 
+       
     }
 }
+
+    
+

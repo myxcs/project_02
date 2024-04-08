@@ -16,55 +16,60 @@ public class BoarController : MonoBehaviour
 
    private float timer = 0f;
    public float coolDown = 2f;
-   public BoarLife boarLife;
-   public bool getHit;
-   public float timerRest;
-   public PlayerLife playerLife;
+   //public BoarLife boarLife;
+  // public bool getHit;
+  // public float timerRest;
+   //public PlayerLife playerLife;
 
     // Start is called before the first frame update
     private void Start()
     {
-        patrolDestination = 0;
+       // patrolDestination = 0;
         sprite = GetComponent<SpriteRenderer>();
         sprite.flipX = false;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         animator.SetBool("run", true);
-        getHit = false;
+       // getHit = false;
     }
 
     // Update is called once per frame
-   private void Update()
-    {
-        
-        getHit = playerLife.boarHit;
-        if(boarLife.boarIsAlive)
-        {
-            if(getHit)
-            {
+  // private void Update()
+    //{
 
-                Debug.Log("Get hit");
-                timerRest += Time.deltaTime;
-                rb.bodyType = RigidbodyType2D.Static;
-                if(timerRest >= 1f)
-                {
-                    getHit = false;
-                    timerRest = 0f;
-                }
-            }
-            else
-            {
-                BoarPatrol();
-            }
+
+       // transform.position = Vector2.MoveTowards(transform.position, Vector2.right, moveSpeed * Time.deltaTime);
+       // BoarPatrol();
+
+        
+        // getHit = playerLife.boarHit;
+        // if(boarLife.boarIsAlive)
+        // {
+        //     if(getHit)
+        //     {
+
+        //         Debug.Log("Get hit");
+        //         timerRest += Time.deltaTime;
+        //         rb.bodyType = RigidbodyType2D.Static;
+        //         if(timerRest >= 1f)
+        //         {
+        //             getHit = false;
+        //             timerRest = 0f;
+        //         }
+        //     }
+        //     else
+        //     {
+        //         BoarPatrol();
+        //     }
             
-        }
-        else
-        {
-            rb.bodyType = RigidbodyType2D.Static;
-        }
+        // }
+        // else
+        // {
+        //     rb.bodyType = RigidbodyType2D.Static;
+        // }
        
 
-}
+//}
 
     private void BoarPatrol()
     {

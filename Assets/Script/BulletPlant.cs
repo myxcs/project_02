@@ -13,7 +13,7 @@ public class BulletPlant : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        Destroy(gameObject,5f);
+        Destroy(gameObject,3f);
     }
 
     // Update is called once per frame

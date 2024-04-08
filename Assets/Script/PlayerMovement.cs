@@ -8,8 +8,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private float moveSpeed = 5f;
-    private float jumpForce = 7f;
-    public float dirX;
+    private float jumpForce = 10f;
+    private float doubleJumpForce = 14f;
+    public float dirX;  
+    public bool doubleJump;
+    
 
     public float KBForce;
     public float KBCounter;
@@ -33,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         anim =GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
+        
     }
 
     // Update is called once per frame
@@ -40,31 +44,48 @@ public class PlayerMovement : MonoBehaviour
     {
         dirX = Input.GetAxisRaw("Horizontal");
         //dirX = 1f;
-        if (KBCounter <=0)
-        {
-             rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
-        }
-        else
-        {
-            if (KnockFromRight)
-            {
-                rb.velocity = new Vector2(KBForce, 1f);
-            }
-            else
-            {
-                rb.velocity = new Vector2(-KBForce, 1f);
-            }
-            KBCounter -= Time.deltaTime;
-        }
+        // if (KBCounter <=0)
+        // {
+        //      rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+        // }
+        // else
+        // {
+        //     if (KnockFromRight)
+        //     {
+        //         rb.velocity = new Vector2(KBForce, 1f);
+        //     }
+        //     else
+        //     {
+        //         rb.velocity = new Vector2(-KBForce, 1f);
+        //     }
+        //     KBCounter -= Time.deltaTime;
+        // }
        
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
-        {
-            jumpSoundEffect.Play();
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
+       rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
 
+       if(IsGrounded() && !Input.GetButton("Jump"))
+       {
+              doubleJump = false;
+       }
+       
+         if (Input.GetButtonDown("Jump"))
+        {
+            if(IsGrounded() || doubleJump)
+            {
+                 jumpSoundEffect.Play();
+                rb.velocity = new Vector2(rb.velocity.x, doubleJump ? doubleJumpForce : jumpForce);
+                doubleJump = !doubleJump;
+            }
+        } 
+        if (Input.GetButtonDown("Jump") && rb.velocity.y > 0f)
+            {
+               // jumpSoundEffect.Play();
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * .5f);
+            }
+       
         UpdateAnimation();
+    
     }
 
 

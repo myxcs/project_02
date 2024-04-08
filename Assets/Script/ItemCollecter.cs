@@ -10,6 +10,10 @@ public class ItemCollector : MonoBehaviour
 
     [SerializeField] private Text coinText;
     [SerializeField] private AudioSource collectionSoundEffect;
+    public ShootCoin shootCoin;
+
+
+    
     //tạo trigger
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,10 +22,14 @@ public class ItemCollector : MonoBehaviour
             collectionSoundEffect.Play();
             Destroy(collision.gameObject);
             coins++;
-            coinText.text = "Coins: " + coins;
+            
             Debug.Log("Coins: " + coins);
           // PlayerPrefs.SetInt("HighScore", coins);
             
         }
+    }
+    void Update()
+    {
+        coinText.text = "Coins: " + coins;
     }
 }

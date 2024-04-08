@@ -22,8 +22,8 @@ public class PlayerLife : MonoBehaviour
     public HealthBar healthBar;
     public GameObject healthBarObject;
     public GameController gameController;
-    public BoarController boarController;
-    public PlayerMovement playerMovement;
+  //  public BoarController boarController;
+   // public PlayerMovement playerMovement;
     public bool boarHit;
 
     [SerializeField] private AudioSource deathSoundEffect;
@@ -37,14 +37,14 @@ public class PlayerLife : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
         healthBarObject = GameObject.Find("HealthBar");
         bc = GetComponent<BoxCollider2D>();
-        boarHit = true;
+        //boarHit = true;
         
     }
 
-    public void Update()
-    {
-        boarHit = boarController.getHit;
-    }
+    // public void Update()
+    // {
+    //     boarHit = boarController.getHit;
+    // }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -58,26 +58,29 @@ public class PlayerLife : MonoBehaviour
         if(collision.gameObject.tag == "Enemy")
         {
             Debug.Log(-20);
-            boarHit = true;
-           boarController.getHit = true;
-             playerMovement.KBCounter = playerMovement.KBTotalTime;
-             if(collision.transform.position.x <= player.position.x)
-             {
-                 playerMovement.KnockFromRight = true;
-             }
-             if(collision.transform.position.x > player.position.x)
-             {
-                 playerMovement.KnockFromRight = false;
-             }
+          //  boarHit = true;
+          // boarController.getHit = true;
+            //  playerMovement.KBCounter = playerMovement.KBTotalTime;
+            //  if(collision.transform.position.x <= player.position.x)
+            //  {
+            //      playerMovement.KnockFromRight = true;
+            //  }
+            //  if(collision.transform.position.x > player.position.x)
+            //  {
+            //      playerMovement.KnockFromRight = false;
+            //  }
             TakeDamage(20);
             hitSoundEffect.Play();
         }
-        if(collision.gameObject.tag == "Deadzone")
-        {
-            Debug.Log("Die");
-            //Die();
+        // if(collision.gameObject.tag == "Deadzone")
+        // {
+        //     Debug.Log("Die");
 
-        }
+        //     TakeDamage(100);
+       
+        //     //Die();
+
+        // }
     }
     private void OnTriggerEnter2D(Collider2D trigger)
     {
@@ -87,6 +90,12 @@ public class PlayerLife : MonoBehaviour
             TakeDamage(20);
             hitSoundEffect.Play();
             Destroy(trigger.gameObject);
+        }
+        if (trigger.gameObject.tag == "Deadzone")
+        {
+            Debug.Log("Die");
+            TakeDamage(100);
+            //Die();
         }
     }
     

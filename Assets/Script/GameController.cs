@@ -9,12 +9,10 @@ public class GameController : MonoBehaviour
     public ItemCollector itemCollector;
    
 
-    
-
-  
        public void GameOver()
     {
         gameOverScreen.Setup(itemCollector.coins);
+        Debug.Log(itemCollector.coins + " Coins");
     }
 
 

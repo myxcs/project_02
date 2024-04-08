@@ -14,13 +14,13 @@ public class Deadzone : MonoBehaviour
         transform.position = new Vector3(player.position.x, -5 , transform.position.z);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            other.gameObject.GetComponent<PlayerLife>().TakeDamage(100);
-            Debug.Log("Deadzone");
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.gameObject.tag == "Player")
+    //     {
+    //         other.gameObject.GetComponent<PlayerLife>().TakeDamage(100);
+    //         Debug.Log("Deadzone");
             
-        }
-    }
+    //     }
+    // }
 }

@@ -15,6 +15,21 @@ public class BoarLife : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
+
+    public void  OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "PlayerBullet")
+        {
+            KillTheBoar();
+        }
+    }
+    public void  OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "PlayerBullet")
+        {
+            KillTheBoar();
+        }
+    }
   public void KillTheBoar()
   {
       animator.SetTrigger("death");

@@ -23,6 +23,13 @@ public class AngryPlant : MonoBehaviour
         animator.SetTrigger("idle");
     }
 
+    public void  OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "PlayerBullet")
+        {
+            OnDeath();
+        }
+    }
 
 
     public void PlantShoot()
@@ -36,5 +43,13 @@ public class AngryPlant : MonoBehaviour
     private void OnShoot()
     {
         animator.SetTrigger("atk");
+    }
+    public void OnDeath()
+    {
+        animator.SetTrigger("death");
+    }
+    public void DestroyThePlant()
+    {
+        Destroy(gameObject);
     }
 }
