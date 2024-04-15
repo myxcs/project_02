@@ -1189,7 +1189,6 @@ GameObject:
   - component: {fileID: 519420035}
   - component: {fileID: 519420037}
   - component: {fileID: 519420036}
-  - component: {fileID: 519420038}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1431,20 +1430,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
---- !u!114 &519420038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6acc9501d9fa1f4682081c9040590a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameOverScreen: {fileID: 1890986854}
-  itemCollector: {fileID: 799157726}
 --- !u!4 &571521205 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4903835896396213882, guid: e671dc79a16bd4c4988404bad675640a, type: 3}
@@ -2182,7 +2167,8 @@ MonoBehaviour:
   currentHealth: 0
   healthBar: {fileID: 820962625}
   healthBarObject: {fileID: 820962623}
-  gameController: {fileID: 519420038}
+  gameOverScreen: {fileID: 1890986854}
+  itemCollector: {fileID: 799157726}
   boarHit: 0
   deathSoundEffect: {fileID: 799157729}
   hitSoundEffect: {fileID: 799157731}
@@ -2201,6 +2187,8 @@ MonoBehaviour:
   coins: 0
   coinText: {fileID: 836851161}
   collectionSoundEffect: {fileID: 799157727}
+  shootCoin: {fileID: 799157733}
+  currenHealth: 0
 --- !u!82 &799157727
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2623,6 +2611,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coin: {fileID: 380662357833839184, guid: e671dc79a16bd4c4988404bad675640a, type: 3}
   coinPos: {fileID: 180450557}
+  itemCollector: {fileID: 799157726}
+  howManyBullet: 0
+  isShot: 0
 --- !u!1 &820962623
 GameObject:
   m_ObjectHideFlags: 0
@@ -3082,8 +3073,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -280.9123, y: -88.03046}
-  m_SizeDelta: {x: 561.8246, y: 176.06091}
+  m_AnchoredPosition: {x: -559.24426, y: -88.03046}
+  m_SizeDelta: {x: 1118.4886, y: 176.0609}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &971882126
 GameObject:
@@ -61448,6 +61439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsText: {fileID: 181213053}
   HighScoreText: {fileID: 942533859}
+  highScore: 0
 --- !u!114 &1890986855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61954,7 +61946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2726742176549806441, guid: 4c6d112edd05b7644b46f66230d46905, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2726742176549806441, guid: 4c6d112edd05b7644b46f66230d46905, type: 3}
       propertyPath: m_TagString
@@ -61999,6 +61991,10 @@ PrefabInstance:
     - target: {fileID: 3266334091304044780, guid: 4c6d112edd05b7644b46f66230d46905, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615998928486626822, guid: 4c6d112edd05b7644b46f66230d46905, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8893817858358840419, guid: 4c6d112edd05b7644b46f66230d46905, type: 3}
       propertyPath: m_IsActive

@@ -16,7 +16,7 @@ public class RandomGround : MonoBehaviour
     private int GrId;
     private int EmId;
     private int rd;
-    public bool spawnEnemyYet = false;
+    public bool spawnEnemyYet;
     int groundLen;
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,9 @@ public class RandomGround : MonoBehaviour
 
         endPos = new Vector2(5f, 0f); //Vị trí cuối cùng của map hiện tại là 5 do ô đất dài 5 ô
         //delete firstGround after 5s
-        
+        rd = 0;
+        spawnEnemyYet = false;
+        StartCoroutine(SpawnEnemy());
 
        
         // rd = Random.Range(2f, 5f); //Random khoảng cách giữa miếng đất đầu và miếng tiếp theo 
@@ -63,11 +65,19 @@ public class RandomGround : MonoBehaviour
             GrId = Random.Range(0, ground.Count);
             EmId = Random.Range(0, enemy.Count);
             GameObject newGround = Instantiate(ground[GrId], nextPos, Quaternion.identity, transform);
-            rd = Random.Range(1, 3);
-            if(rd == 1)
-             {
-                  GameObject newEnemy = Instantiate(enemy[EmId], enemyNextPos, Quaternion.identity, transform);
+           rd = Random.Range(1, 3);
+           if(rd == 1)
+           {
+            if(spawnEnemyYet){
+                 GameObject newEnemy = Instantiate(enemy[EmId], enemyNextPos, Quaternion.identity, transform);
             }
+            
+           }
+            
+           
+            
+                
+            
              
          
             
@@ -82,13 +92,22 @@ public class RandomGround : MonoBehaviour
             }
            
             endPos = new Vector2(nextPos.x + groundLen, 0f);
+           
         }
+
+
+        
         //Nhân vật chạy qua nhưng các miến đất cũ không mất đi
         //Lấy miếng đầu tiên trong danh sách
 
        
     }
-}
 
+    IEnumerator SpawnEnemy(){
+        yield return new WaitForSeconds(2f);
+         spawnEnemyYet = true;
+    }
+}
     
+
 

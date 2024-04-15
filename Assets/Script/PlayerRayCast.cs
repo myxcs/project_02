@@ -57,6 +57,7 @@ public class PlayerRayCast : MonoBehaviour
         }
         Vector2 endPos = castPoint.position + Vector3.right * castDist;
         RaycastHit2D hit = Physics2D.Linecast(castPoint.position, endPos, 1 << LayerMask.NameToLayer("Enemy"));
+      //  RaycastHit2D hitthem = Physics2D.Raycast(transform.position, endPos, 0.5f);
         if(hit.collider != null)
         {   
            // Debug.Log(hit.collider.name);
@@ -65,6 +66,7 @@ public class PlayerRayCast : MonoBehaviour
                hit.collider.GetComponent<BoarLife>().KillTheBoar();
             }
             Debug.DrawLine(castPoint.position, endPos, Color.red);
+            //Debug.DrawRay(castPoint.position, endPos, Color.green);
         }
         else
         {

@@ -21,9 +21,11 @@ public class PlayerLife : MonoBehaviour
 
     public HealthBar healthBar;
     public GameObject healthBarObject;
-    public GameController gameController;
+    //public GameController gameController;
   //  public BoarController boarController;
    // public PlayerMovement playerMovement;
+     public GameOverScreen gameOverScreen;
+    public ItemCollector itemCollector;
     public bool boarHit;
 
     [SerializeField] private AudioSource deathSoundEffect;
@@ -72,6 +74,7 @@ public class PlayerLife : MonoBehaviour
             TakeDamage(20);
             hitSoundEffect.Play();
         }
+      
         // if(collision.gameObject.tag == "Deadzone")
         // {
         //     Debug.Log("Die");
@@ -91,6 +94,14 @@ public class PlayerLife : MonoBehaviour
             hitSoundEffect.Play();
             Destroy(trigger.gameObject);
         }
+        // if(trigger.gameObject.tag == "Coins")
+        // {
+        //     if(currentHealth < 100)
+        //     {
+        //         TakeDamage(-10);
+        //         Debug.Log("+10HP");
+        //     }
+        // }
         if (trigger.gameObject.tag == "Deadzone")
         {
             Debug.Log("Die");
@@ -112,7 +123,7 @@ public class PlayerLife : MonoBehaviour
         
         if(currentHealth <= 0)
         {
-            gameController.GameOver();
+            GameOver();
             Die();
         }
     }
@@ -125,5 +136,11 @@ public class PlayerLife : MonoBehaviour
         healthBarObject.SetActive(false);
        // RestartLevel();
     }
+       public void GameOver()
+    {
+        gameOverScreen.Setup(itemCollector.coins);
+        Debug.Log(itemCollector.coins + " HighScore");
+    }
+
 
 }

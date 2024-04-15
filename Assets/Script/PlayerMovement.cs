@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public bool playerFaceRight;
     private SpriteRenderer sprite;
     [SerializeField] private LayerMask jumpableGround;
+
     [SerializeField] private AudioSource jumpSoundEffect;
     private BoxCollider2D coll;
 
@@ -82,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
             {
                // jumpSoundEffect.Play();
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * .5f);
+                
             }
        
         UpdateAnimation();

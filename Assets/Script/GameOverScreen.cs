@@ -11,6 +11,7 @@ public class GameOverScreen : MonoBehaviour
 
     public Text pointsText;
     public Text HighScoreText;
+    public int highScore;
     //public ItemCollector itemCollector;
     
     
@@ -19,13 +20,14 @@ public class GameOverScreen : MonoBehaviour
         gameObject.SetActive(true);
         pointsText.text = score.ToString() + " POINTS";
 
-        int highScore = PlayerPrefs.GetInt("Highscore", 0);
+        highScore = PlayerPrefs.GetInt("Highscore", 0);
         if (score > highScore)
         {
             highScore = score;
             PlayerPrefs.SetInt("Highscore", highScore);
         }
         HighScoreText.text = "HIGHSCORE: " + highScore.ToString();
+        Debug.Log("HIGHSCORE:" + highScore);
 
     }
      public void Restart()
