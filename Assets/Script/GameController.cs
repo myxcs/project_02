@@ -5,15 +5,9 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public GameOverScreen gameOverScreen;
-    public ItemCollector itemCollector;
+  
    
 
-       public void GameOver()
-    {
-        gameOverScreen.Setup(itemCollector.coins);
-        Debug.Log(itemCollector.coins + " Coins");
-    }
-
+    
 
 }

@@ -8,6 +8,8 @@ public class PlayerBullet : MonoBehaviour
     public Rigidbody2D rb;
     public float speed = 10f;
     public Transform transf;
+    public AngryPlant angryPlant;
+    public BoarLife boarLife;
 
 
 
@@ -23,6 +25,8 @@ public class PlayerBullet : MonoBehaviour
     void Update()
     {
          rb.velocity = new Vector2(15f, rb.velocity.y);
+          Destroy(gameObject, 5f);
     }    
+   
   
 }
